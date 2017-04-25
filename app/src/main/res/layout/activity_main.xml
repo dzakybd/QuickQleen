@@ -12,11 +12,13 @@
         android:columnCount="3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <android.support.v7.widget.CardView
+            android:id="@+id/near"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            >
+            android:layout_margin="5dp">
+
             <FrameLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp">
@@ -38,11 +40,13 @@
                     android:textSize="20sp" />
             </FrameLayout>
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
+            android:id="@+id/promo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            >
+            android:layout_margin="5dp">
+
             <FrameLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp">
@@ -64,11 +68,13 @@
                     android:textSize="20sp" />
             </FrameLayout>
         </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
+            android:id="@+id/all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            >
+            android:layout_margin="5dp">
+
             <FrameLayout
                 android:layout_width="100dp"
                 android:layout_height="100dp">

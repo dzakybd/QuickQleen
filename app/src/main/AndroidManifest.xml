@@ -35,7 +35,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main" />
-        <activity android:name=".DetailLaundry"></activity>
+        <activity android:name=".DetailLaundry" />
+        <activity android:name=".TrackLaundry"></activity>
     </application>
 
 </manifest>
