@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -37,17 +38,11 @@ public class Main extends AppCompatActivity {
         laundries.add("Laundry 3,30 km");
         laundries.add("Laundry 1,10 km");
         laundries.add("Laundry 2,20 km");
-        laundries.add("Laundry 3,30 km");
-        laundries.add("Laundry 1,10 km");
-        laundries.add("Laundry 2,20 km");
-        laundries.add("Laundry 3,30 km");
-        laundries.add("Laundry 1,10 km");
-        laundries.add("Laundry 2,20 km");
-        laundries.add("Laundry 3,30 km");
         listlaundry.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         listlaundry.setHasFixedSize(true);
         LaundryRecyclerAdapter adapter = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
         listlaundry.setAdapter(adapter);
+
 
     }
 
@@ -61,5 +56,17 @@ public class Main extends AppCompatActivity {
             case R.id.all:
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

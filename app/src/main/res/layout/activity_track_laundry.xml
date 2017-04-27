@@ -1,31 +1,55 @@
-   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="id.qq.quickqleen.TrackLaundry">
-       <EditText
+       <android.support.v7.widget.Toolbar
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:minHeight="?attr/actionBarSize"
+           android:background="@color/primary"
+           app:theme="@style/ThemeOverlay.AppCompat.Dark"
+           app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+           app:layout_scrollFlags="scroll|enterAlways"
+           >
+       </android.support.v7.widget.Toolbar>
+       <com.seatgeek.placesautocomplete.PlacesAutocompleteTextView
+           android:layout_below="@+id/toolbar"
            android:id="@+id/from"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:ems="10"
-           android:inputType="textPersonName"
-           android:hint="From" />
+           android:ellipsize="end"
+           android:maxLines="1"
+           app:pacv_languageCode="in"
+           android:hint="From"
+           android:textSize="12sp"
+           app:pacv_googleMapsApiKey="@string/googlegeneralkey"
+           app:pacv_adapterClass="id.qq.quickqleen.PlaceAdapter"
+           />
 
-       <EditText
+       <com.seatgeek.placesautocomplete.PlacesAutocompleteTextView
+           android:layout_below="@+id/from"
            android:id="@+id/to"
+           android:textSize="12sp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:ems="10"
-           android:inputType="textPersonName"
-           android:hint="To" />
+           android:ellipsize="end"
+           android:maxLines="1"
+           app:pacv_languageCode="in"
+           android:hint="To"
+           app:pacv_googleMapsApiKey="@string/googlegeneralkey"
+           app:pacv_adapterClass="id.qq.quickqleen.PlaceAdapter"
+           />
 
     <com.google.android.gms.maps.MapView
+        android:layout_above="@+id/con"
+        android:layout_below="@+id/to"
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         map:cameraZoom="15"
         map:mapType="normal"
         map:uiCompass="false"
@@ -35,22 +59,21 @@
         map:uiZoomGestures="true" />
 
        <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="250dp"
-           android:layout_weight="1"
+           android:id="@+id/con"
+           android:layout_alignParentBottom="true"
            android:orientation="vertical"
-           android:weightSum="3">
-
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
            <TextView
+               android:background="@android:color/white"
                android:layout_margin="10dp"
                android:textColor="@color/primary_text"
                android:gravity="center"
                android:id="@+id/harga"
-               android:textSize="20sp"
+               android:textSize="15sp"
                android:textStyle="bold"
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_weight="1.475"
+               android:layout_height="60dp"
                android:text="Harga" />
 
            <Button
@@ -59,9 +82,7 @@
                android:id="@+id/order"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_weight="1.475"
                android:text="Order" />
-
        </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
