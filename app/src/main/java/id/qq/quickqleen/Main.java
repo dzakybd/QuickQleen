@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -45,8 +46,6 @@ public class Main extends AppCompatActivity {
         listlaundry.setHasFixedSize(true);
         LaundryRecyclerAdapter adapter = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
         listlaundry.setAdapter(adapter);
-
-
     }
 
     @OnClick({R.id.near, R.id.all, R.id.myorder})
@@ -54,6 +53,7 @@ public class Main extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.near:
                 textHome.setText("Near My Location");
+                Log.d("errornih",textHome.getText().toString());
                 laundries = new ArrayList<>();
                 laundries.add("wiw,3 km");
                 laundries.add("waw,1 km");
@@ -64,6 +64,7 @@ public class Main extends AppCompatActivity {
                 break;
             case R.id.all:
                 textHome.setText("All Laundry");
+                Log.d("errornih",textHome.getText().toString());
                 laundries = new ArrayList<>();
                 laundries.add("Laundry A,3 km");
                 laundries.add("Laundry B,1 km");
@@ -79,6 +80,7 @@ public class Main extends AppCompatActivity {
                 break;
             case R.id.myorder:
                 textHome.setText("My Order");
+                Log.d("errornih",textHome.getText().toString());
                 laundries = new ArrayList<>();
                 laundries.add("Laundry Gebang,3 km");
                 laundries.add("Laundry Keputih,1 km");
