@@ -1,6 +1,7 @@
 package id.qq.driverquickqleen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -48,11 +49,11 @@ public class LaundryRecyclerAdapter extends RecyclerView.Adapter<LaundryRecycler
                 .color(ContextCompat.getColor(context, R.color.primary)));
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                Intent intent = new Intent(context, DetailLaundry.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent.putExtra("nama", laundry[0]);
-//                intent.putExtra("jarak", laundry[1]);
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, TrackLaundry.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("nama", laundry[0]);
+                intent.putExtra("jarak", laundry[1]);
+                context.startActivity(intent);
             }
         });
 

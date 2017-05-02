@@ -1,14 +1,23 @@
 package id.qq.quickqleen;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,11 +101,46 @@ public class Main extends AppCompatActivity {
         }
     }
 
+    private void out() {
+        AlertDialog.Builder pilihan = new AlertDialog.Builder(this);
+        pilihan.setMessage("Anda ingin keluar?");
+        pilihan.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Prefs.clear();
+                startActivity(new Intent(Main.this, Login.class));
+                finish();
+            }
+        });
+        pilihan.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        AlertDialog alert = pilihan.create();
+        alert.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        menu.findItem(R.id.out).setIcon(
+                new IconicsDrawable(this)
+                        .icon(FontAwesome.Icon.faw_sign_out)
+                        .color(Color.WHITE)
+                        .actionBar()
+        );
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.out:
+                out();
                 break;
             default:
                 break;

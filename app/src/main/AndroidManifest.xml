@@ -38,7 +38,8 @@
         <activity android:name=".DetailLaundry" />
         <activity android:name=".TrackLaundry" />
         <activity android:name=".DriverFind" />
-        <activity android:name=".History"></activity>
+        <activity android:name=".History"/>
+        <activity android:name=".Login"/>
     </application>
 
 </manifest>
