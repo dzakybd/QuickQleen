@@ -55,10 +55,10 @@ public class Main extends AppCompatActivity {
                 textHome.setText("Near My Location");
                 Log.d("errornih",textHome.getText().toString());
                 laundries = new ArrayList<>();
-                laundries.add("wiw,3 km");
-                laundries.add("waw,1 km");
-                laundries.add("wow,2 km");
-                laundries.add("wew,3 km");
+                laundries.add("Laundry A,0.5 km");
+                laundries.add("Laundry B,0.6 km");
+                laundries.add("Laundry C,0.8 km");
+                laundries.add("Laundry D,1 km");
                 LaundryRecyclerAdapter adapter = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
                 listlaundry.setAdapter(adapter);
                 break;
@@ -82,11 +82,11 @@ public class Main extends AppCompatActivity {
                 textHome.setText("My Order");
                 Log.d("errornih",textHome.getText().toString());
                 laundries = new ArrayList<>();
-                laundries.add("Laundry Gebang,3 km");
-                laundries.add("Laundry Keputih,1 km");
-                laundries.add("Laundry Mulyos,2 km");
-                laundries.add("Laundry Kertajaya,3 km");
-                LaundryRecyclerAdapter adaptermyorder = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
+                laundries.add("Laundry Gebang,ON PROGRESS");
+                laundries.add("Laundry Keputih,ON PROGRESS");
+                laundries.add("Laundry Mulyos, DONE");
+                laundries.add("Laundry Kertajaya, DONE");
+                MyOrderRecyclerAdapter adaptermyorder = new MyOrderRecyclerAdapter(getApplicationContext(), laundries);
                 listlaundry.setAdapter(adaptermyorder);
                 break;
         }
