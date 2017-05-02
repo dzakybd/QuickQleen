@@ -78,6 +78,10 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_laundry);
         ButterKnife.bind(this);
+        if(getIntent().getExtras().getInt("c1")==1);
+        else if(getIntent().getExtras().getInt("c2")==1);
+        else lewat();
+
         setTitle(getString(R.string.app_name));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -129,6 +133,15 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                 });
     }
 
+    private void lewat(){
+        Intent intent = new Intent(this, Main.class);
+        intent.putExtra("nama", getIntent().getExtras().getString("nama"));
+        intent.putExtra("total", tot);
+        intent.putExtra("c1", getIntent().getExtras().getInt("c1"));
+        intent.putExtra("c2", getIntent().getExtras().getInt("c2"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
     @OnClick(R.id.order)
     public void onViewClicked() {
         ProgressDialog progressDialog = new ProgressDialog(this);
@@ -170,7 +183,6 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                 .build();
         mGoogleApiClient.connect();
     }
-
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {

@@ -35,7 +35,7 @@
                     android:background="#B3F44336"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Text 1"
+                    android:text="Near me"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </FrameLayout>
@@ -63,7 +63,7 @@
                     android:background="#B3FF9800"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Text 1"
+                    android:text="Promo"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </FrameLayout>
@@ -91,7 +91,7 @@
                     android:background="#B3212121"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Text 1"
+                    android:text="My order"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </FrameLayout>

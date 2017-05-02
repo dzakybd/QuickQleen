@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/QuickQleen.iml" filepath="$PROJECT_DIR$/QuickQleen.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/driverquickqleen/driverquickqleen.iml" filepath="$PROJECT_DIR$/driverquickqleen/driverquickqleen.iml" />
     </modules>
   </component>
 </project>

@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -71,38 +73,50 @@ public class DetailLaundry extends AppCompatActivity {
     Button order;
     @BindView(R.id.con)
     LinearLayout con;
-    int int_harga1,int_harga2,int_harga3,int_harga4,int_harga5,tot,kg;
+    int int_harga1, int_harga2, int_harga3, int_harga4, int_harga5, tot, kg;
+    @BindView(R.id.rg1rb1)
+    RadioButton rg1rb1;
+    @BindView(R.id.rg1rb2)
+    RadioButton rg1rb2;
+    @BindView(R.id.rg1)
+    RadioGroup rg1;
+    @BindView(R.id.rg2rb1)
+    RadioButton rg2rb1;
+    @BindView(R.id.rg2rb2)
+    RadioButton rg2rb2;
+    @BindView(R.id.rg2)
+    RadioGroup rg2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_laundry);
         ButterKnife.bind(this);
-        tot=kg=0;
-        berat.setText("1");
+        tot = kg = 0;
         nama1.setText("Cuci Kering");
         nama2.setText("Cuci Setrika");
         nama3.setText("Cuci Mamel");
         nama4.setText("Cuci Wenter");
         nama5.setText("Cuci Sendiri");
-        int_harga1=2000;
-        int_harga2=3000;
-        int_harga3=4000;
-        int_harga4=5000;
-        int_harga5=6000;
+        int_harga1 = 2000;
+        int_harga2 = 3000;
+        int_harga3 = 4000;
+        int_harga4 = 5000;
+        int_harga5 = 6000;
         setTitle(getIntent().getExtras().getString("nama"));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(false);
-        harga1.setText(String.valueOf(int_harga1)+"/kg");
-        harga2.setText(String.valueOf(int_harga2)+"/kg");
-        harga3.setText(String.valueOf(int_harga3)+"/kg");
-        harga4.setText(String.valueOf(int_harga4)+"/kg");
-        harga5.setText(String.valueOf(int_harga5)+"/kg");
+        harga1.setText(String.valueOf(int_harga1) + "/kg");
+        harga2.setText(String.valueOf(int_harga2) + "/kg");
+        harga3.setText(String.valueOf(int_harga3) + "/kg");
+        harga4.setText(String.valueOf(int_harga4) + "/kg");
+        harga5.setText(String.valueOf(int_harga5) + "/kg");
         berat.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start,
@@ -118,7 +132,7 @@ public class DetailLaundry extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.hitsendiri, R.id.order,R.id.check1, R.id.check2, R.id.check3, R.id.check4, R.id.check5})
+    @OnClick({R.id.hitsendiri, R.id.order, R.id.check1, R.id.check2, R.id.check3, R.id.check4, R.id.check5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.hitsendiri:
@@ -129,9 +143,29 @@ public class DetailLaundry extends AppCompatActivity {
                 }
                 break;
             case R.id.order:
+                int c1=rg1.getCheckedRadioButtonId();
+                switch (c1){
+                    case R.id.rg1rb1 :
+                        c1=0;
+                        break;
+                    case R.id.rg1rb2 :
+                        c1=1;
+                        break;
+                }
+                int c2=rg2.getCheckedRadioButtonId();
+                switch (c2){
+                    case R.id.rg2rb1 :
+                        c2=0;
+                        break;
+                    case R.id.rg2rb2 :
+                        c2=1;
+                        break;
+                }
                 Intent intent = new Intent(this, TrackLaundry.class);
                 intent.putExtra("nama", getIntent().getExtras().getString("nama"));
-                intent.putExtra("total",tot);
+                intent.putExtra("total", tot);
+                intent.putExtra("c1", c1);
+                intent.putExtra("c2", c2);
                 startActivity(intent);
                 break;
             case R.id.check1:
@@ -152,17 +186,17 @@ public class DetailLaundry extends AppCompatActivity {
         }
     }
 
-    private void updateharga(){
-        tot=0;
-        kg=0;
-        if(berat.getText().toString().contentEquals(""))kg=0;
-        else kg=Integer.parseInt(berat.getText().toString());
-        if(check1.isChecked())tot+=int_harga1*kg;
-        if(check2.isChecked())tot+=int_harga2*kg;
-        if(check3.isChecked())tot+=int_harga3*kg;
-        if(check4.isChecked())tot+=int_harga4*kg;
-        if(check5.isChecked())tot+=int_harga5*kg;
-        total.setText("Rp "+String.valueOf(tot));
+    private void updateharga() {
+        tot = 0;
+        kg = 0;
+        if (berat.getText().toString().contentEquals("")) kg = 0;
+        else kg = Integer.parseInt(berat.getText().toString());
+        if (check1.isChecked()) tot += int_harga1 * kg;
+        if (check2.isChecked()) tot += int_harga2 * kg;
+        if (check3.isChecked()) tot += int_harga3 * kg;
+        if (check4.isChecked()) tot += int_harga4 * kg;
+        if (check5.isChecked()) tot += int_harga5 * kg;
+        total.setText("Rp " + String.valueOf(tot));
     }
 
     @Override

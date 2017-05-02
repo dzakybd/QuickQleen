@@ -16,11 +16,57 @@
         app:layout_scrollFlags="scroll|enterAlways"
         >
     </android.support.v7.widget.Toolbar>
-
+    <GridLayout
+        android:id="@+id/head"
+        android:rowCount="2"
+        android:columnCount="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true">
+        <TextView android:text="" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginEnd="10dp" android:gravity="center"/>
+        <TextView android:text="Laundry baru" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginEnd="10dp" android:gravity="center"/>
+        <TextView android:text="Laundry jadi" android:layout_height="wrap_content" android:layout_width="wrap_content" android:gravity="center"/>
+        <LinearLayout android:layout_marginEnd="10dp" android:layout_height="64dp" android:layout_width="wrap_content" android:orientation="vertical" android:weightSum="2">
+            <TextView android:layout_weight="1" android:text="Antar/ambil sendiri" android:layout_height="match_parent" android:layout_width="match_parent" android:gravity="center_vertical"/>
+            <TextView android:layout_weight="1" android:text="Antar/ambil petugas" android:layout_height="match_parent" android:layout_width="match_parent"  android:gravity="center_vertical"/>
+        </LinearLayout>
+        <RadioGroup
+            android:id="@+id/rg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <RadioButton
+                android:id="@+id/rg1rb1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 />
+            <RadioButton
+                android:id="@+id/rg1rb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <RadioButton
+                android:id="@+id/rg2rb1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/rg2rb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+    </GridLayout>
     <EditText
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/head"
         android:id="@+id/berat"
         android:hint="Berat / kg"
         android:layout_width="wrap_content"
