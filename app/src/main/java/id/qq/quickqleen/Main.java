@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,12 @@ public class Main extends AppCompatActivity {
     List<String> laundries;
     @BindView(R.id.near)
     CardView near;
-    @BindView(R.id.promo)
-    CardView promo;
     @BindView(R.id.all)
     CardView all;
+    @BindView(R.id.myorder)
+    CardView myorder;
+    @BindView(R.id.text_home)
+    TextView textHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +49,43 @@ public class Main extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.near, R.id.promo, R.id.all})
+    @OnClick({R.id.near, R.id.all, R.id.myorder})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.near:
-                break;
-            case R.id.promo:
+                textHome.setText("Near My Location");
+                laundries = new ArrayList<>();
+                laundries.add("wiw,3 km");
+                laundries.add("waw,1 km");
+                laundries.add("wow,2 km");
+                laundries.add("wew,3 km");
+                LaundryRecyclerAdapter adapter = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
+                listlaundry.setAdapter(adapter);
                 break;
             case R.id.all:
+                textHome.setText("All Laundry");
+                laundries = new ArrayList<>();
+                laundries.add("Laundry A,3 km");
+                laundries.add("Laundry B,1 km");
+                laundries.add("Laundry C,2 km");
+                laundries.add("Laundry D,3 km");
+                laundries.add("Laundry E,3 km");
+                laundries.add("Laundry F,3 km");
+                laundries.add("Laundry G,3 km");
+                laundries.add("Laundry H,3 km");
+                laundries.add("Laundry I,3 km");
+                LaundryRecyclerAdapter adapterall = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
+                listlaundry.setAdapter(adapterall);
+                break;
+            case R.id.myorder:
+                textHome.setText("My Order");
+                laundries = new ArrayList<>();
+                laundries.add("Laundry Gebang,3 km");
+                laundries.add("Laundry Keputih,1 km");
+                laundries.add("Laundry Mulyos,2 km");
+                laundries.add("Laundry Kertajaya,3 km");
+                LaundryRecyclerAdapter adaptermyorder = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
+                listlaundry.setAdapter(adaptermyorder);
                 break;
         }
     }
