@@ -35,6 +35,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -168,9 +169,9 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
             driver = new LatLng(location.getLatitude(),location.getLongitude());
             user = new LatLng(location.getLatitude()+0.005,location.getLongitude());
             laundry = new LatLng(location.getLatitude(),location.getLongitude()+0.005);
-            mGoogleMap.addMarker(new MarkerOptions().position(driver));
-            mGoogleMap.addMarker(new MarkerOptions().position(user));
-            mGoogleMap.addMarker(new MarkerOptions().position(laundry));
+            mGoogleMap.addMarker(new MarkerOptions().position(driver).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Driver");
+            mGoogleMap.addMarker(new MarkerOptions().position(user).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("User");
+            mGoogleMap.addMarker(new MarkerOptions().position(laundry).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Laundry");
             mapsetted();
         }
 
@@ -181,6 +182,15 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
         builder.include(user);
         builder.include(laundry);
         builder.include(driver);
+        LatLngBounds bounds = builder.build();
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 50);
+        mGoogleMap.moveCamera(cu);
+        if(getIntent().getExtras().getString("mode").contentEquals("0")){
+         mapantar();
+        }else mapjemput();
+    }
+
+    private void mapantar(){
         GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
                 .from(driver)
                 .to(user)
@@ -193,7 +203,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                             ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
                             distance += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDistance().getText().replace(" km",""));
                             duration += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDuration().getText().replace(" mins",""));
-                            mGoogleMap.addPolyline(DirectionConverter.createPolyline(TrackLaundry.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.primary, null)));
+                            mGoogleMap.addPolyline(DirectionConverter.createPolyline(TrackLaundry.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.primary_light, null)));
                         } else {
                             Log.d("mapse", rawBody);
                             // Do something
@@ -217,7 +227,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                             ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
                             distance += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDistance().getText().replace(" km",""));
                             duration += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDuration().getText().replace(" mins",""));
-                            keterangan.setText(distance+" "+duration);
+                            keterangan.setText("Jarak :"+distance+" km\nWaktu :"+duration+" menit\nUpah : Rp "+Math.round(distance*3000));
                             mGoogleMap.addPolyline(DirectionConverter.createPolyline(TrackLaundry.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.primary, null)));
                         } else {
                             Log.d("mapse", rawBody);
@@ -230,9 +240,58 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                         Log.d("mapse", t.toString());
                     }
                 });
-        LatLngBounds bounds = builder.build();
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 50);
-        mGoogleMap.moveCamera(cu);
+    }
+
+    private void mapjemput(){
+        GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
+                .from(driver)
+                .to(laundry)
+                .avoid(AvoidType.TOLLS)
+                .avoid(AvoidType.FERRIES)
+                .execute(new DirectionCallback() {
+                    @Override
+                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                        if(direction.isOK()) {
+                            ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
+                            distance += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDistance().getText().replace(" km",""));
+                            duration += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDuration().getText().replace(" mins",""));
+                            mGoogleMap.addPolyline(DirectionConverter.createPolyline(TrackLaundry.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.primary_light, null)));
+                        } else {
+                            Log.d("mapse", rawBody);
+                            // Do something
+                        }
+                    }
+
+                    @Override
+                    public void onDirectionFailure(Throwable t) {
+                        Log.d("mapse", t.toString());
+                    }
+                });
+        GoogleDirection.withServerKey(getResources().getString(R.string.googlegeneralkey))
+                .from(laundry)
+                .to(user)
+                .avoid(AvoidType.TOLLS)
+                .avoid(AvoidType.FERRIES)
+                .execute(new DirectionCallback() {
+                    @Override
+                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                        if(direction.isOK()) {
+                            ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
+                            distance += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDistance().getText().replace(" km",""));
+                            duration += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDuration().getText().replace(" mins",""));
+                            keterangan.setText("Jarak :"+distance+" km\nWaktu :"+duration+" menit\nUpah : Rp "+Math.round(distance*3000));
+                            mGoogleMap.addPolyline(DirectionConverter.createPolyline(TrackLaundry.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.primary, null)));
+                        } else {
+                            Log.d("mapse", rawBody);
+                            // Do something
+                        }
+                    }
+
+                    @Override
+                    public void onDirectionFailure(Throwable t) {
+                        Log.d("mapse", t.toString());
+                    }
+                });
     }
 
     @Override

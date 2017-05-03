@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="id.qq.quickqleen.Main">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_scrollFlags="scroll|enterAlways"
+        >
 
+    </android.support.v7.widget.Toolbar>
     <GridLayout
         android:layout_gravity="center"
         android:rowCount="1"
@@ -63,7 +75,7 @@
                     android:background="#B3FF9800"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Promo"
+                    android:text="All Laundry"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </FrameLayout>

@@ -33,6 +33,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -70,23 +71,18 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
     TextView harga;
     @BindView(R.id.order)
     Button order;
-    String distance,duration,price,total;
-    int tot;
+    double distance,duration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_laundry);
         ButterKnife.bind(this);
-        if(getIntent().getExtras().getInt("c1")==1);
-        else if(getIntent().getExtras().getInt("c2")==1);
-        else lewat();
-
+        distance=duration=0;
         setTitle(getString(R.string.app_name));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(false);
-        tot = getIntent().getExtras().getInt("total");
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
         to.setEnabled(false);
@@ -99,7 +95,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                             public void onSuccess(final PlaceDetails details) {
                                 from.setText(details.name);
                                 awal=new LatLng(details.geometry.location.lat, details.geometry.location.lng);
-                                mGoogleMap.addMarker(new MarkerOptions().position(awal));
+                                mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Asal");
                                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(awal));
                                 to.setEnabled(true);
                             }
@@ -121,7 +117,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                             public void onSuccess(final PlaceDetails details) {
                                 to.setText(details.name);
                                 tujuan=new LatLng(details.geometry.location.lat, details.geometry.location.lng);
-                                mGoogleMap.addMarker(new MarkerOptions().position(tujuan));
+                                mGoogleMap.addMarker(new MarkerOptions().position(tujuan).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Tujuan");
                                 mapsetted();
                             }
                             @Override
@@ -133,15 +129,6 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                 });
     }
 
-    private void lewat(){
-        Intent intent = new Intent(this, Main.class);
-        intent.putExtra("nama", getIntent().getExtras().getString("nama"));
-        intent.putExtra("total", tot);
-        intent.putExtra("c1", getIntent().getExtras().getInt("c1"));
-        intent.putExtra("c2", getIntent().getExtras().getInt("c2"));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
     @OnClick(R.id.order)
     public void onViewClicked() {
         ProgressDialog progressDialog = new ProgressDialog(this);
@@ -159,6 +146,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                 i.putExtra("tujuan.latitude",tujuan.latitude);
                 i.putExtra("tujuan.longitude",tujuan.longitude);
                 startActivity(i);
+                finish();
             }
         }, 2000);
     }
@@ -230,11 +218,9 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                     public void onDirectionSuccess(Direction direction, String rawBody) {
                         if(direction.isOK()) {
                             ArrayList<LatLng> directionPositionList = direction.getRouteList().get(0).getLegList().get(0).getDirectionPoint();
-                            distance = direction.getRouteList().get(0).getLegList().get(0).getDistance().getText();
-                            duration = direction.getRouteList().get(0).getLegList().get(0).getDuration().getText();
-                            price = "Rp "+String.valueOf((int)Double.parseDouble(distance.replace(" km",""))*3000);
-                            total = "Rp "+String.valueOf((int)(Double.parseDouble(distance.replace(" km",""))*3000)+tot);
-                            harga.setText("Jarak: "+distance+" | Waktu: "+duration+"\nCuci: "+"Rp "+tot+" | Antar: "+price+"\nTotal: "+total);
+                            distance += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDistance().getText().replace(" km",""));
+                            duration += Double.parseDouble(direction.getRouteList().get(0).getLegList().get(0).getDuration().getText().replace(" mins",""));
+                            harga.setText("Jarak :"+distance+" km\nWaktu :"+duration+" menit\nTransport : Rp "+Math.round(distance*3000*2));
                             mGoogleMap.addPolyline(DirectionConverter.createPolyline(TrackLaundry.this, directionPositionList, 5, ResourcesCompat.getColor(getResources(), R.color.primary, null)));
                         } else {
                             Log.d("mapse", rawBody);

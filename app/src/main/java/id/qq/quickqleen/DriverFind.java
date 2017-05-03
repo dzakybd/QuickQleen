@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -67,6 +68,19 @@ public class DriverFind extends AppCompatActivity implements OnMapReadyCallback 
             public void onClick(DialogInterface dialog, int which) {
             }
         }).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DriverFind.this);
+                alertDialogBuilder.setMessage("Driver sudah sampai!").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(DriverFind.this, Main.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }).show();
+            }
+        }, 4000);
     }
 
     @Override
@@ -74,8 +88,8 @@ public class DriverFind extends AppCompatActivity implements OnMapReadyCallback 
         mGoogleMap = googleMap;
         awal = new LatLng(getIntent().getExtras().getDouble("awal.latitude"),getIntent().getExtras().getDouble("awal.longitude"));
         tujuan = new LatLng(getIntent().getExtras().getDouble("tujuan.latitude"),getIntent().getExtras().getDouble("tujuan.longitude"));
-        mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot)));
-        mGoogleMap.addMarker(new MarkerOptions().position(tujuan));
+        mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Driver");
+        mGoogleMap.addMarker(new MarkerOptions().position(tujuan).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Anda");
         mapsetted();
     }
 

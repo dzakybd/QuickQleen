@@ -40,11 +40,10 @@ public class JemputFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_jemput, container, false);
         unbinder = ButterKnife.bind(this, view);
         laundries = new ArrayList<>();
-        laundries.add("Laundry 12,10 km");
-        laundries.add("Laundry 21,20 km");
-        laundries.add("Laundry 31,30 km");
-        laundries.add("Laundry 15,10 km");
-        laundries.add("Laundry 22,20 km");
+        laundries.add("Kenjeran,20 km,Waiting,1");
+        laundries.add("Kapasan,30 km,Canceled,1");
+        laundries.add("Mulyosari,10 km,DONE,1");
+        laundries.add("Bubutan,40 km,DONE,1");
         listjemput.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         listjemput.setHasFixedSize(true);
         LaundryRecyclerAdapter adapter = new LaundryRecyclerAdapter(getActivity(), laundries);

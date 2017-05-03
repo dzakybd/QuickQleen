@@ -44,7 +44,6 @@ public class Main extends AppCompatActivity {
         setTitle(appname);
         setupViewPager(mViewPager);
         tabLayout.setupWithViewPager(mViewPager);
-        setupTabIcons();
     }
 
     @Override
@@ -96,16 +95,6 @@ public class Main extends AppCompatActivity {
         alert.show();
     }
 
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(new IconicsDrawable(this)
-                .icon(FontAwesome.Icon.faw_map)
-                .color(Color.WHITE)
-                .actionBar());
-        tabLayout.getTabAt(1).setIcon(new IconicsDrawable(this)
-                .icon(FontAwesome.Icon.faw_file)
-                .color(Color.WHITE)
-                .actionBar());
-    }
 
     static class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

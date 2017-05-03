@@ -40,11 +40,12 @@ public class AntarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_antar, container, false);
         unbinder = ButterKnife.bind(this, view);
         laundries = new ArrayList<>();
-        laundries.add("Laundry 1,10 km");
-        laundries.add("Laundry 2,20 km");
-        laundries.add("Laundry 3,30 km");
-        laundries.add("Laundry 1,10 km");
-        laundries.add("Laundry 2,20 km");
+        laundries.add("Gebang,10 km,ON PROGRESS,0");
+        laundries.add("Keputih,20 km,Waiting,0");
+        laundries.add("Semolowaru,30 km,Canceled,0");
+        laundries.add("Ahmad Yani,40 km,DONE,0");
+        laundries.add("Gubeng,30 km,DONE,0");
+//        jalan singkat + jarak + status
         listantar.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         listantar.setHasFixedSize(true);
         LaundryRecyclerAdapter adapter = new LaundryRecyclerAdapter(getActivity(), laundries);

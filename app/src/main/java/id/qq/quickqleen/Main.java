@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,12 +40,15 @@ public class Main extends AppCompatActivity {
     CardView myorder;
     @BindView(R.id.text_home)
     TextView textHome;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
         laundries = new ArrayList<>();
         laundries.add("Laundry 1,10 km");
         laundries.add("Laundry 2,20 km");
@@ -56,6 +60,8 @@ public class Main extends AppCompatActivity {
         LaundryRecyclerAdapter adapter = new LaundryRecyclerAdapter(getApplicationContext(), laundries);
         listlaundry.setAdapter(adapter);
     }
+
+
 
     @OnClick({R.id.near, R.id.all, R.id.myorder})
     public void onViewClicked(View view) {

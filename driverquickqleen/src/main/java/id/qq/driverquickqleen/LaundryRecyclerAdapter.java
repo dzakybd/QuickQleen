@@ -2,17 +2,13 @@ package id.qq.driverquickqleen;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.mikepenz.fontawesome_typeface_library.FontAwesome;
-import com.mikepenz.iconics.IconicsDrawable;
 
 import java.util.List;
 
@@ -28,6 +24,7 @@ public class LaundryRecyclerAdapter extends RecyclerView.Adapter<LaundryRecycler
     Context context;
     List<String> laundries;
 
+
     public LaundryRecyclerAdapter(Context context, List<String> laundries) {
         this.context = context;
         this.laundries = laundries;
@@ -42,17 +39,21 @@ public class LaundryRecyclerAdapter extends RecyclerView.Adapter<LaundryRecycler
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String[] laundry = laundries.get(position).split(",");
+        holder.status.setText(laundry[2]);
         holder.jarak.setText(laundry[1]);
         holder.nama.setText(laundry[0]);
-        holder.icon.setImageDrawable(new IconicsDrawable(context)
-                .icon(FontAwesome.Icon.faw_map_marker)
-                .color(ContextCompat.getColor(context, R.color.primary)));
+        if(laundry[2].contentEquals("DONE"))holder.status.setTextColor(Color.GREEN);
+        else if(laundry[2].contentEquals("Waiting"))holder.status.setTextColor(Color.LTGRAY);
+        else if(laundry[2].contentEquals("ON PROGRESS"))holder.status.setTextColor(Color.DKGRAY);
+        else if(laundry[2].contentEquals("Canceled"))holder.status.setTextColor(Color.RED);
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, TrackLaundry.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("nama", laundry[0]);
                 intent.putExtra("jarak", laundry[1]);
+                intent.putExtra("status", laundry[2]);
+                intent.putExtra("mode", laundry[3]);
                 context.startActivity(intent);
             }
         });
@@ -66,14 +67,14 @@ public class LaundryRecyclerAdapter extends RecyclerView.Adapter<LaundryRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.view)
-        CardView view;
         @BindView(R.id.nama)
         TextView nama;
-        @BindView(R.id.icon)
-        ImageView icon;
         @BindView(R.id.jarak)
         TextView jarak;
+        @BindView(R.id.status)
+        TextView status;
+        @BindView(R.id.view)
+        CardView view;
 
         public ViewHolder(View itemView) {
             super(itemView);
