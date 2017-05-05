@@ -95,7 +95,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                             public void onSuccess(final PlaceDetails details) {
                                 from.setText(details.name);
                                 awal=new LatLng(details.geometry.location.lat, details.geometry.location.lng);
-                                mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Asal");
+                                mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.home_icon))).setTitle("Asal");
                                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(awal));
                                 to.setEnabled(true);
                             }

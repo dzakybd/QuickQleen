@@ -169,9 +169,9 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
             driver = new LatLng(location.getLatitude(),location.getLongitude());
             user = new LatLng(location.getLatitude()+0.005,location.getLongitude());
             laundry = new LatLng(location.getLatitude(),location.getLongitude()+0.005);
-            mGoogleMap.addMarker(new MarkerOptions().position(driver).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Driver");
-            mGoogleMap.addMarker(new MarkerOptions().position(user).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("User");
-            mGoogleMap.addMarker(new MarkerOptions().position(laundry).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Laundry");
+            mGoogleMap.addMarker(new MarkerOptions().position(driver).icon(BitmapDescriptorFactory.fromResource(R.drawable.ojek))).setTitle("Driver");
+            mGoogleMap.addMarker(new MarkerOptions().position(user).icon(BitmapDescriptorFactory.fromResource(R.drawable.home))).setTitle("User");
+            mGoogleMap.addMarker(new MarkerOptions().position(laundry).icon(BitmapDescriptorFactory.fromResource(R.drawable.laundry))).setTitle("Laundry");
             mapsetted();
         }
 
