@@ -101,14 +101,64 @@
         android:text="Detail Laundry" />
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="21dp"
-        android:text="TextView" />
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <GridLayout
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_toEndOf="@id/image"
+                android:columnCount="2"
+                android:rowCount="2">
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:text="Nama"
+                    />
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/nama"
+                    android:text=": Budi"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:text="Plat Nomor"
+                    />
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/plat"
+                    android:text=": L 123 H"
+                    android:textStyle="bold" />
+            </GridLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/button2"
