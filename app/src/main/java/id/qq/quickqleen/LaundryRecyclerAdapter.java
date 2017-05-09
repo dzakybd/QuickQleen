@@ -66,7 +66,7 @@ public class LaundryRecyclerAdapter extends RecyclerView.Adapter<LaundryRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.view)
+        @BindView(R.id.view2)
         CardView view;
         @BindView(R.id.nama)
         TextView nama;

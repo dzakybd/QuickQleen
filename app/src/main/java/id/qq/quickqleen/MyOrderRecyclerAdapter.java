@@ -63,7 +63,7 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //inisialisasi pendefinisian view
-        @BindView(R.id.view)
+        @BindView(R.id.view2)
         CardView view;
         @BindView(R.id.nama)
         TextView nama;

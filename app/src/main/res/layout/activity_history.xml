@@ -26,7 +26,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_below="@+id/toolbar"
-        android:id="@+id/view"
+        android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -65,10 +65,9 @@
                     />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:layout_width="100dp"
                     android:layout_height="30dp"
-                    android:id="@+id/nama"
+                    android:gravity="center_vertical"
                     android:text=": Budi"
                     android:textStyle="bold" />
 
@@ -80,10 +79,9 @@
                     />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:layout_width="100dp"
                     android:layout_height="30dp"
-                    android:id="@+id/plat"
+                    android:gravity="center_vertical"
                     android:text=": L 123 H"
                     android:textStyle="bold" />
             </GridLayout>
@@ -103,7 +101,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_below="@+id/toolbar"
-        android:id="@+id/view"
+        android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
@@ -133,10 +131,9 @@
                     />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:layout_width="100dp"
                     android:layout_height="30dp"
-                    android:id="@+id/nama"
+                    android:gravity="center_vertical"
                     android:text=": Budi"
                     android:textStyle="bold" />
 
@@ -148,10 +145,9 @@
                     />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:layout_width="100dp"
                     android:layout_height="30dp"
-                    android:id="@+id/plat"
+                    android:gravity="center_vertical"
                     android:text=": L 123 H"
                     android:textStyle="bold" />
             </GridLayout>

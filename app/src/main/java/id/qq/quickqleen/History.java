@@ -14,20 +14,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class History extends AppCompatActivity {
 
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.image)
     CircleImageView image;
-    @BindView(R.id.nama)
-    TextView nama;
-    @BindView(R.id.plat)
-    TextView plat;
-    @BindView(R.id.view)
-    CardView view;
+    @BindView(R.id.view1)
+    CardView view1;
     @BindView(R.id.textView)
     TextView textView;
-    @BindView(R.id.textView2)
-    TextView textView2;
+    @BindView(R.id.view2)
+    CardView view2;
     @BindView(R.id.button2)
     Button button2;
 
