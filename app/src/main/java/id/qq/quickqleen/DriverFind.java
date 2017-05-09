@@ -88,8 +88,8 @@ public class DriverFind extends AppCompatActivity implements OnMapReadyCallback 
         mGoogleMap = googleMap;
         awal = new LatLng(getIntent().getExtras().getDouble("awal.latitude"),getIntent().getExtras().getDouble("awal.longitude"));
         tujuan = new LatLng(getIntent().getExtras().getDouble("tujuan.latitude"),getIntent().getExtras().getDouble("tujuan.longitude"));
-        mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Driver");
-        mGoogleMap.addMarker(new MarkerOptions().position(tujuan).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Anda");
+        mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_ojek))).setTitle("Driver");
+        mGoogleMap.addMarker(new MarkerOptions().position(tujuan).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_home))).setTitle("Anda");
         mapsetted();
     }
 
