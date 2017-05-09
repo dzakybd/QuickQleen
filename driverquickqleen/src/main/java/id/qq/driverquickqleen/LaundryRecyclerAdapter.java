@@ -42,10 +42,10 @@ public class LaundryRecyclerAdapter extends RecyclerView.Adapter<LaundryRecycler
         holder.status.setText(laundry[2]);
         holder.jarak.setText(laundry[1]);
         holder.nama.setText(laundry[0]);
-        if(laundry[2].contentEquals("DONE"))holder.status.setTextColor(Color.GREEN);
-        else if(laundry[2].contentEquals("Waiting"))holder.status.setTextColor(Color.LTGRAY);
-        else if(laundry[2].contentEquals("ON PROGRESS"))holder.status.setTextColor(Color.DKGRAY);
-        else if(laundry[2].contentEquals("Canceled"))holder.status.setTextColor(Color.RED);
+        if(laundry[2].contentEquals("Selesai"))holder.status.setTextColor(Color.GREEN);
+        else if(laundry[2].contentEquals("Menunggu"))holder.status.setTextColor(Color.LTGRAY);
+        else if(laundry[2].contentEquals("Diproses"))holder.status.setTextColor(Color.DKGRAY);
+        else if(laundry[2].contentEquals("Batal"))holder.status.setTextColor(Color.RED);
         holder.view.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, TrackLaundry.class);

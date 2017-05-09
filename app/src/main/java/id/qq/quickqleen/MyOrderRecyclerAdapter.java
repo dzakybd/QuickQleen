@@ -38,10 +38,10 @@ public class MyOrderRecyclerAdapter extends RecyclerView.Adapter<MyOrderRecycler
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String[] laundry = laundries.get(position).split(",");
-        if(laundry[1].contentEquals("DONE"))holder.status.setTextColor(Color.GREEN);
-        else if(laundry[1].contentEquals("Waiting"))holder.status.setTextColor(Color.LTGRAY);
-        else if(laundry[1].contentEquals("ON PROGRESS"))holder.status.setTextColor(Color.DKGRAY);
-        else if(laundry[1].contentEquals("Canceled"))holder.status.setTextColor(Color.RED);
+        if(laundry[1].contentEquals("Selesai"))holder.status.setTextColor(Color.GREEN);
+        else if(laundry[1].contentEquals("Menunggu"))holder.status.setTextColor(Color.LTGRAY);
+        else if(laundry[1].contentEquals("Diproses"))holder.status.setTextColor(Color.DKGRAY);
+        else if(laundry[1].contentEquals("Batal"))holder.status.setTextColor(Color.RED);
         holder.status.setText(laundry[1]);
         holder.nama.setText(laundry[0]);
         holder.view.setOnClickListener(new View.OnClickListener() {

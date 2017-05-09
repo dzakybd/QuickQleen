@@ -109,7 +109,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     }).show();
-                    button.setText("Arrived");
+                    button.setText("Sudah sampai");
                 }
             }, 2000);
         }else{

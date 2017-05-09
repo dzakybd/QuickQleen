@@ -24,29 +24,15 @@
            android:ellipsize="end"
            android:maxLines="1"
            app:pacv_languageCode="in"
-           android:hint="From"
-           android:textSize="12sp"
+           android:hint="Dari"
+           android:textSize="17sp"
            app:pacv_googleMapsApiKey="@string/googlegeneralkey"
            app:pacv_adapterClass="id.qq.quickqleen.PlaceAdapter"
            />
 
-       <com.seatgeek.placesautocomplete.PlacesAutocompleteTextView
-           android:layout_below="@+id/from"
-           android:id="@+id/to"
-           android:textSize="12sp"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:ellipsize="end"
-           android:maxLines="1"
-           app:pacv_languageCode="in"
-           android:hint="To"
-           app:pacv_googleMapsApiKey="@string/googlegeneralkey"
-           app:pacv_adapterClass="id.qq.quickqleen.PlaceAdapter"
-           />
-
-    <com.google.android.gms.maps.MapView
+       <com.google.android.gms.maps.MapView
         android:layout_above="@+id/con"
-        android:layout_below="@+id/to"
+        android:layout_below="@+id/from"
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -77,12 +63,12 @@
                android:text="Harga" />
 
            <Button
-               android:textColor="@android:color/white"
-               android:background="@color/primary"
                android:id="@+id/order"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Order" />
+               android:background="@color/primary"
+               android:text="Pesan"
+               android:textColor="@android:color/white" />
        </LinearLayout>
 
     </RelativeLayout>

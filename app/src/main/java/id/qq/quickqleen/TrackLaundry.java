@@ -63,8 +63,6 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
     Toolbar toolbar;
     @BindView(R.id.from)
     PlacesAutocompleteTextView from;
-    @BindView(R.id.to)
-    PlacesAutocompleteTextView to;
     @BindView(R.id.map)
     MapView mMapView;
     @BindView(R.id.harga)
@@ -85,7 +83,6 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setHomeButtonEnabled(false);
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
-        to.setEnabled(false);
         from.setOnPlaceSelectedListener(
                 new OnPlaceSelectedListener() {
                     @Override
@@ -96,27 +93,7 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                                 from.setText(details.name);
                                 awal=new LatLng(details.geometry.location.lat, details.geometry.location.lng);
                                 mGoogleMap.addMarker(new MarkerOptions().position(awal).icon(BitmapDescriptorFactory.fromResource(R.drawable.home_icon))).setTitle("Asal");
-                                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(awal));
-                                to.setEnabled(true);
-                            }
-                            @Override
-                            public void onFailure(final Throwable failure) {
-                                Log.d("test", "failure " + failure);
-                            }
-
-                        });
-                    }
-                });
-
-        to.setOnPlaceSelectedListener(
-                new OnPlaceSelectedListener() {
-                    @Override
-                    public void onPlaceSelected(final Place place) {
-                        to.getDetailsFor(place, new DetailsCallback() {
-                            @Override
-                            public void onSuccess(final PlaceDetails details) {
-                                to.setText(details.name);
-                                tujuan=new LatLng(details.geometry.location.lat, details.geometry.location.lng);
+                                tujuan=new LatLng(details.geometry.location.lat-0.005, details.geometry.location.lng-0.005);
                                 mGoogleMap.addMarker(new MarkerOptions().position(tujuan).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_angkot))).setTitle("Tujuan");
                                 mapsetted();
                             }
@@ -124,9 +101,11 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                             public void onFailure(final Throwable failure) {
                                 Log.d("test", "failure " + failure);
                             }
+
                         });
                     }
                 });
+
     }
 
     @OnClick(R.id.order)

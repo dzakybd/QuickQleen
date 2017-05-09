@@ -64,7 +64,7 @@ public class DriverFind extends AppCompatActivity implements OnMapReadyCallback 
         mMapView.onCreate(savedInstanceState);
         mMapView.getMapAsync(this);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Driver found!").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setMessage("Driver ditemukan!").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
             }
         }).show();
@@ -80,7 +80,7 @@ public class DriverFind extends AppCompatActivity implements OnMapReadyCallback 
                     }
                 }).show();
             }
-        }, 4000);
+        }, 10000);
     }
 
     @Override

@@ -26,12 +26,13 @@
             android:text="sss"
             android:layout_width="50dp"
             android:layout_height="match_parent" />
+
         <TextView
+            android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/status"
             android:layout_weight="1"
-            android:text="ON PROGRESS" />
+            android:gravity="center"
+            android:text="Diproses" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

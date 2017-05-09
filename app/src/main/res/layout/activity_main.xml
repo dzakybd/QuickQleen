@@ -47,7 +47,7 @@
                     android:background="#B3F44336"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Near me"
+                    android:text="Terdekat"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </FrameLayout>
@@ -75,7 +75,7 @@
                     android:background="#B3FF9800"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="All Laundry"
+                    android:text="Semua"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </FrameLayout>
@@ -103,7 +103,7 @@
                     android:background="#B3212121"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="My order"
+                    android:text="Riwayat"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </FrameLayout>
@@ -111,14 +111,14 @@
     </GridLayout>
 
     <TextView
+        android:id="@+id/text_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center_vertical|left"
-        android:textStyle="bold"
+        android:text="Rekomendasi"
         android:textColor="@color/primary_text"
-        android:id="@+id/text_home"
-        android:text="Recommended"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listlaundry"
