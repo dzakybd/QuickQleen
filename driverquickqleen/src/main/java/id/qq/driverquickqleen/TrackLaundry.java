@@ -113,8 +113,14 @@ public class TrackLaundry extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }, 2000);
         }else{
-            Intent intent = new Intent(this, DetailLaundry.class);
-            startActivity(intent);
+            if(getIntent().getExtras().getString("mode").contentEquals("0")){
+                Intent intent = new Intent(this, DetailLaundry.class);
+                startActivity(intent);
+            }else {
+                Intent intent = new Intent(this, DetailLaundryJemput.class);
+                startActivity(intent);
+
+            }
         }
     }
 

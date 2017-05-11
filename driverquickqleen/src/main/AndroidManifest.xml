@@ -33,6 +33,7 @@
         <activity android:name=".DetailLaundry" />
         <activity android:name=".TrackLaundry" />
         <activity android:name=".Login"/>
+        <activity android:name=".DetailLaundryJemput"/>
     </application>
 
 </manifest>
